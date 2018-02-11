@@ -6,6 +6,9 @@ namespace LibraryData
 {
     public class LibraryDBContext : DbContext
     {
-        public DbSet<Patron> patrons { get; set; }
+        public LibraryDBContext(DbContextOptions options) :base (options) { }
+
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }
