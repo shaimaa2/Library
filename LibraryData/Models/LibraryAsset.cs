@@ -11,7 +11,7 @@ namespace LibraryData.Models
         public int Id   { get; set; }
 
         [Required]
-        public int Title   { get; set; }
+        public String Title   { get; set; }
 
         [Required]
         public int Year { get; set; }

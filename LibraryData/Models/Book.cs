@@ -8,7 +8,7 @@ namespace LibraryData.Models
     public class Book : LibraryAsset
     {
         [Required]
-        public int ISBN { get; set; }
+        public String ISBN { get; set; }
         [Required]
         public String Author { get; set; }
         [Required]
