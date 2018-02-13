@@ -12,8 +12,8 @@ using System;
 namespace LibraryData.Migrations
 {
     [DbContext(typeof(LibraryDBContext))]
-    [Migration("20180211100827_add initial Entity Model")]
-    partial class addinitialEntityModel
+    [Migration("20180213095431_initial migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,7 +84,7 @@ namespace LibraryData.Migrations
 
                     b.HasIndex("LibraryCardId");
 
-                    b.ToTable("CheckoutHistory");
+                    b.ToTable("CheckoutHistorys");
                 });
 
             modelBuilder.Entity("LibraryData.Models.Holds", b =>
@@ -125,7 +125,8 @@ namespace LibraryData.Migrations
 
                     b.Property<int>("StatusId");
 
-                    b.Property<int>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.Property<int>("Year");
 
@@ -205,7 +206,7 @@ namespace LibraryData.Migrations
 
                     b.HasIndex("LibraryCardId");
 
-                    b.ToTable("Patron");
+                    b.ToTable("Patrons");
                 });
 
             modelBuilder.Entity("LibraryData.Models.Status", b =>
@@ -234,7 +235,8 @@ namespace LibraryData.Migrations
                     b.Property<string>("DeweyIndex")
                         .IsRequired();
 
-                    b.Property<int>("ISBN");
+                    b.Property<string>("ISBN")
+                        .IsRequired();
 
                     b.ToTable("Book");
 

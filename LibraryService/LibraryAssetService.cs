@@ -12,7 +12,7 @@ namespace LibraryService
     {
         private LibraryDBContext _Context;
 
-        LibraryAssetService(LibraryDBContext Context)
+        public LibraryAssetService(LibraryDBContext Context)
         {
             _Context = Context;
         }

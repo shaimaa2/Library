@@ -124,7 +124,8 @@ namespace LibraryData.Migrations
 
                     b.Property<int>("StatusId");
 
-                    b.Property<int>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.Property<int>("Year");
 

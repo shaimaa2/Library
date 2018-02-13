@@ -12,7 +12,7 @@ namespace LibraryWebUI.Controllers
     {
 
         private ILibraryAsset _asset;
-        CatalogController(ILibraryAsset asset)
+        public CatalogController(ILibraryAsset asset)
         {
             _asset = asset;
         }

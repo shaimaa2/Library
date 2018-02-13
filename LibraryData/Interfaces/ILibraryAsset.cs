@@ -12,14 +12,14 @@ namespace LibraryData.Interfaces
 
         LibraryAsset GetById(int id);
 
-        String GetType(int id);
-        String GetDeweyIndex(int id);
-        String GetTitle(int id);
-        String GetIsbn(int id);
+        string GetType(int id);
+        string GetDeweyIndex(int id);
+        string GetTitle(int id);
+        string GetIsbn(int id);
 
         LibraryBranch GetCurrentlocation(int id);
 
-        String GetDirectorOrAuthor(int id);
+        string GetDirectorOrAuthor(int id);
 
 
     }

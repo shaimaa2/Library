@@ -8,10 +8,10 @@ namespace LibraryData.Models
     public class Book : LibraryAsset
     {
         [Required]
-        public String ISBN { get; set; }
+        public string ISBN { get; set; }
         [Required]
-        public String Author { get; set; }
+        public string Author { get; set; }
         [Required]
-        public String DeweyIndex { get; set; }
+        public string DeweyIndex { get; set; }
     }
 }

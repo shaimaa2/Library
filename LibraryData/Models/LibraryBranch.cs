@@ -11,14 +11,14 @@ namespace LibraryData.Models
 
         [Required]
         [StringLength (30,ErrorMessage ="Limit Branch Name 40 character")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public String Address { get; set; }
+        public string Address { get; set; }
         [Required]
-       public String Telephone { get; set; }
+       public string Telephone { get; set; }
 
-        public String Description { get; set; }
+        public string Description { get; set; }
         public DateTime OpenDate { get; set; }
 
 
@@ -27,7 +27,7 @@ namespace LibraryData.Models
 
         public virtual IEnumerable<LibraryAsset> LibraryAssets { get; set; }
 
-        public String ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

@@ -7,6 +7,6 @@ namespace LibraryData.Models
     public class Video :LibraryAsset
     {
 
-        public String Director { get; set; }
+        public string Director { get; set; }
     }
 }

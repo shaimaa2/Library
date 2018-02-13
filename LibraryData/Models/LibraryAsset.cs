@@ -11,7 +11,7 @@ namespace LibraryData.Models
         public int Id   { get; set; }
 
         [Required]
-        public String Title   { get; set; }
+        public string Title   { get; set; }
 
         [Required]
         public int Year { get; set; }
@@ -22,7 +22,7 @@ namespace LibraryData.Models
         [Required]
         public Status Status { get; set; }
 
-        public String ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public int NumberOfCopies { get; set; }
 
