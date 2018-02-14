@@ -1,0 +1,45 @@
+﻿@model LibraryWebUI.Models.Catalog.AssetDetailModel
+
+<div class="container">
+    <div class="page-header clearfix detailHeading" >
+        <h2 class="text-muted">View library Item</h2>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="detailImage" src="@Model.ImageUrl" />
+        </div>
+        <div class="col-md-4">
+            <p id=" itemtitle"> @Model.Title</p>
+            <p id=" itemyear"> @Model.Year</p>
+            <p id=" itemCost"> @Model.Cost</p>
+            <p id=" itemStatus"> @Model.Status</p>
+            <p id=" itemtype"> @Model.Type</p>
+
+            @if (Model.Status == "Lost")
+        {
+            <p>This Item has been lost</p>
+            <p id=" itempatron"> <a class="btn btn-lg btn-danger" role="button" asp-controller="Catalog" asp-action="MarkFound" asp-route-id="@Model.Id">MarkFound</a> </p>
+    }
+            @if (Model.Status == "Checked Out")
+        {
+            <p id=" itempatron"> Checked Out By : @Model.PatronName</p>
+            <p id=" itempatron"> <a class="btn btn-lg btn-success" role="button" asp-controller="Catalog" asp-action="CheckIn" asp-route-id="@Model.Id">Check In</a> </p>
+            <p id=" itempatron"> <a class="btn btn-lg btn-warning" role="button" asp-controller="Catalog" asp-action="Hold" asp-route-id="@Model.Id">Place Hold</a> </p>
+    }
+            @if (Model.Status == "Available")
+        {
+            <p id=" itempatron"> <a class="btn btn-lg btn-info" role="button" asp-controller="Catalog" asp-action="CheckOut" asp-route-id="@Model.Id">Check Out</a> </p>
+    }
+
+        </div>
+        <div class="col-md-4">
+            <table>
+                <tr>
+
+                </tr>
+            </table>
+        </div>
+        </div>
+    </div>

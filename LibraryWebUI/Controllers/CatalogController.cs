@@ -35,5 +35,26 @@ namespace LibraryWebUI.Controllers
             };
             return View(model);
         }
+        public IActionResult Detail(int id)
+        {
+            var asset = _asset.GetById(id);
+            var model = new AssetDetailModel
+            {
+                Id = id,
+                Title = asset.Title,
+                Year = asset.Year,
+                Cost = asset.Cost,
+
+                Status = asset.Status.Name,
+
+                DeweyCallNamber = _asset.GetDeweyIndex(id),
+                AuthorOrDirector = _asset.GetDirectorOrAuthor(id),
+                CurrentLocation = _asset.GetCurrentlocation(id).Name,
+                ISBN = _asset.GetIsbn(id),
+                Type = _asset.GetType(id)
+
+            };
+            return View(model);
+        }
     }
 }

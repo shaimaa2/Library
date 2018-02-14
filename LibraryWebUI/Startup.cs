@@ -28,6 +28,8 @@ namespace LibraryWebUI
             services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddScoped<ILibraryAsset, LibraryAssetService>();
+            services.AddScoped<ICheckOut, CheckOutServices>();
+
             services.AddDbContext<LibraryDBContext>(options =>
                          options.UseSqlServer(Configuration.GetConnectionString("LibraryConnection")));
 
