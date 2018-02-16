@@ -12,9 +12,12 @@ namespace LibraryWebUI.Controllers
     {
 
         private ILibraryAsset _asset;
-        public CatalogController(ILibraryAsset asset)
+        private ICheckOut _checkout;
+
+        public CatalogController(ILibraryAsset asset, ICheckOut checkout)
         {
             _asset = asset;
+            _checkout = checkout;
         }
         public IActionResult Index()
         {
@@ -35,23 +38,31 @@ namespace LibraryWebUI.Controllers
             };
             return View(model);
         }
-        public IActionResult Detail(int id)
+        public IActionResult Detail(int assetid)
         {
-            var asset = _asset.GetById(id);
+            var asset = _asset.GetById(assetid);
+            var currentholds = _checkout.GetCurrentHolds(assetid)
+                .Select( a =>  new AssetHoldModel
+                {
+                    HoldPlaced = _checkout.GetCurrentHoldPlaced(assetid),
+                    PatronName = _checkout.GetCurrentHoldPatronName(assetid)
+                });
+
             var model = new AssetDetailModel
             {
-                Id = id,
+                Id = assetid,
                 Title = asset.Title,
                 Year = asset.Year,
                 Cost = asset.Cost,
-
                 Status = asset.Status.Name,
+                ImageUrl = asset.ImageUrl,
 
-                DeweyCallNamber = _asset.GetDeweyIndex(id),
-                AuthorOrDirector = _asset.GetDirectorOrAuthor(id),
-                CurrentLocation = _asset.GetCurrentlocation(id).Name,
-                ISBN = _asset.GetIsbn(id),
-                Type = _asset.GetType(id)
+                DeweyCallNamber = _asset.GetDeweyIndex(assetid),
+                AuthorOrDirector = _asset.GetDirectorOrAuthor(assetid),
+                CurrentLocation = _asset.GetCurrentlocation(assetid).Name,
+
+                ISBN = _asset.GetIsbn(assetid),
+                Type = _asset.GetType(assetid)
 
             };
             return View(model);

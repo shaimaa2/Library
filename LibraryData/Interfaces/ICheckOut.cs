@@ -9,7 +9,7 @@ namespace LibraryData.Interfaces
     {
         IEnumerable<CheckOut> GetAll();
         IEnumerable <CheckoutHistory> GetCheckOutHistory(int libraryassetid);
-        IEnumerable<Holds> GetCurrentHolds(int id);
+        IEnumerable<Holds> GetCurrentHolds(int assetid);
 
 
         void Add(CheckOut newcheckout);
@@ -22,6 +22,7 @@ namespace LibraryData.Interfaces
         CheckOut GetById(int checkoutid);
         CheckOut GetLatestCheckout(int checkoutid);
         string GetCurrentHoldPatronName(int id);
+        string GetCurrentCheckoutPatron(int assetId);
         DateTime GetCurrentHoldPlaced(int id);
     }
 }
