@@ -58,7 +58,7 @@ namespace LibraryService
                 .OrderByDescending(c => c.Since)
                 .FirstOrDefault();
         }
-        void  MarkFound(int assetId)
+        public void MarkFound(int assetId)
         {
             var now = DateTime.Now;
 
@@ -107,14 +107,14 @@ namespace LibraryService
             }
         }
 
-        void MarkLost(int assetId)
+        public void MarkLost(int assetId)
         {
 
             UpdateAssetStatus(assetId,"Lost");
             _context.SaveChanges();
         }
 
-        void Plachold(int assetId, int LibraryCardId)
+        public void Plachold(int assetId, int LibraryCardId)
         {
             var now = DateTime.Now;
 
@@ -138,7 +138,7 @@ namespace LibraryService
 
         }
 
-        void CheckinItem(int assetId, int LibraryCardId)
+        public void CheckinItem(int assetId, int LibraryCardId)
         {
             var now = DateTime.Now;
             var item =
@@ -186,7 +186,7 @@ namespace LibraryService
             CheckoutItem(assetId,card.Id);
         }
 
-        void CheckoutItem(int assetId, int LibraryCardId)
+        public void CheckoutItem(int assetId, int LibraryCardId)
         {
             if (IsCheckedOut(assetId))
             {
@@ -238,7 +238,7 @@ namespace LibraryService
 
 
 
-        string GetCurrentHoldPatronName(int holdid)
+        public string GetCurrentHoldPatronName(int holdid)
         {
             var hold = _context.Holds
                 .Include(h => h.LibraryAsset)
@@ -256,7 +256,7 @@ namespace LibraryService
         }
 
 
-        DateTime GetCurrentHoldPlaced(int holdid)
+        public DateTime GetCurrentHoldPlaced(int holdid)
         {
 
            return 
@@ -267,13 +267,13 @@ namespace LibraryService
                 .HoldPlaced;
         }
 
-        IEnumerable<CheckOut> GetAll()
+        public IEnumerable<CheckOut> GetAll()
         {
             return _context.CheckOuts;
         }
 
 
-        string ICheckOut.GetCurrentCheckoutPatron(int assetId)
+        public string GetCurrentCheckoutPatron(int assetId)
         {
             var checkout = GetCheckoutByAssetId(assetId);
 

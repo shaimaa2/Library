@@ -18,28 +18,88 @@
             <p id=" itemtype"> @Model.Type</p>
 
             @if (Model.Status == "Lost")
-        {
-            <p>This Item has been lost</p>
-            <p id=" itempatron"> <a class="btn btn-lg btn-danger" role="button" asp-controller="Catalog" asp-action="MarkFound" asp-route-id="@Model.Id">MarkFound</a> </p>
-    }
+            {
+                <p>This Item has been lost</p>
+                <p id=" itempatron"> <a class="btn btn-lg btn-danger" role="button" asp-controller="Catalog" asp-action="MarkFound" asp-route-id="@Model.Id">MarkFound</a> </p>
+            }
             @if (Model.Status == "Checked Out")
-        {
-            <p id=" itempatron"> Checked Out By : @Model.PatronName</p>
-            <p id=" itempatron"> <a class="btn btn-lg btn-success" role="button" asp-controller="Catalog" asp-action="CheckIn" asp-route-id="@Model.Id">Check In</a> </p>
-            <p id=" itempatron"> <a class="btn btn-lg btn-warning" role="button" asp-controller="Catalog" asp-action="Hold" asp-route-id="@Model.Id">Place Hold</a> </p>
-    }
+            {
+                <p id=" itempatron"> Checked Out By : @Model.PatronName</p>
+                <p id=" itempatron"> <a class="btn btn-lg btn-success" role="button" asp-controller="Catalog" asp-action="CheckIn" asp-route-id="@Model.Id">Check In</a> </p>
+                <p id=" itempatron"> <a class="btn btn-lg btn-warning" role="button" asp-controller="Catalog" asp-action="Hold" asp-route-id="@Model.Id">Place Hold</a> </p>
+            }
             @if (Model.Status == "Available")
-        {
-            <p id=" itempatron"> <a class="btn btn-lg btn-info" role="button" asp-controller="Catalog" asp-action="CheckOut" asp-route-id="@Model.Id">Check Out</a> </p>
-    }
+            {
+                <p id=" itempatron"> <a class="btn btn-lg btn-info" role="button" asp-controller="Catalog" asp-action="CheckOut" asp-route-id="@Model.Id">Check Out</a> </p>
+            }
 
         </div>
         <div class="col-md-4">
             <table>
                 <tr>
-
+                    <td class="itemLabel">ISBN : </td>
+                    <td class="itemValue">@Model.ISBN </td>
+                </tr>
+                <tr>
+                    <td class="itemLabel">Call Number : </td>
+                    <td class="itemValue">@Model.DeweyCallNamber </td>
+                </tr>
+                <tr>
+                    <td class="itemLabel">Replacement Cost : </td>
+                    <td class="itemValue">@Model.Cost</td>
                 </tr>
             </table>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Hold History</h4>
+            <table class="table table-bordered table-condensed table-hover ">
+                <thead>
+                    <tr>
+                        <th>Hold Placed</th>
+                        <th>Patron </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var hold in Model.AssetHold)
+                {
+                    <tr>
+                        <td>@hold.HoldPlaced </td>
+                    </tr>
+                    <tr>
+                        <td>@hold.PatronName</td>
+                    </tr>
+            }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <h4>Check Out History</h4>
+            <table class="table table-bordered table-condensed table-hover ">
+                <thead>
+                    <tr>
+                        <th>Date Loaned</th>
+                        <th>Date Returned</th>
+                        <th>Card ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Checkout in Model.CheckoutHistory)
+    {
+                <tr>
+                    <td>@Checkout.CheckOut </td>
+                </tr>
+                <tr>
+                    <td>@Checkout.CheckIn </td>
+                </tr>
+                <tr>
+                    <td>@Checkout.LibraryCard.Id </td>
+                </tr>
+}
+                </tbody>
+            </table>
         </div>
     </div>
+    </div>
+

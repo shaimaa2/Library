@@ -41,6 +41,7 @@ namespace LibraryWebUI.Controllers
         public IActionResult Detail(int assetid)
         {
             var asset = _asset.GetById(assetid);
+
             var currentholds = _checkout.GetCurrentHolds(assetid)
                 .Select( a =>  new AssetHoldModel
                 {
@@ -48,23 +49,27 @@ namespace LibraryWebUI.Controllers
                     PatronName = _checkout.GetCurrentHoldPatronName(assetid)
                 });
 
-            var model = new AssetDetailModel
-            {
-                Id = assetid,
-                Title = asset.Title,
-                Year = asset.Year,
-                Cost = asset.Cost,
-                Status = asset.Status.Name,
-                ImageUrl = asset.ImageUrl,
+                var model = new AssetDetailModel
+                {
+                        Id = assetid,
+                        Title = asset.Title,
+                        Year = asset.Year,
+                        Cost = asset.Cost,
+                        Status = asset.Status.Name,
+                        ImageUrl = asset.ImageUrl,
 
-                DeweyCallNamber = _asset.GetDeweyIndex(assetid),
-                AuthorOrDirector = _asset.GetDirectorOrAuthor(assetid),
-                CurrentLocation = _asset.GetCurrentlocation(assetid).Name,
+                        DeweyCallNamber = _asset.GetDeweyIndex(assetid),
+                        AuthorOrDirector = _asset.GetDirectorOrAuthor(assetid),
+                        CurrentLocation = _asset.GetCurrentlocation(assetid).Name,
+                        PatronName = _checkout.GetCurrentCheckoutPatron(assetid),
+                        LatestCheckout = _checkout.GetLatestCheckout(assetid),
+                        CheckoutHistory = _checkout.GetCheckOutHistory(assetid),
+                        AssetHold = currentholds,
 
-                ISBN = _asset.GetIsbn(assetid),
-                Type = _asset.GetType(assetid)
+                        ISBN = _asset.GetIsbn(assetid),
+                        Type = _asset.GetType(assetid)
 
-            };
+                };
             return View(model);
         }
     }
